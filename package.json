@@ -1,17 +1,19 @@
 {
   "name": "express-express",
+  "type": "commonjs",
   "version": "1.0.0",
   "description": "",
-  "main": "./api/index.js",
+  "main": "./api/index.mjs",
   "scripts": {
-    "start": "nodemon ./api/index.js",
+    "start": "nodemon ./api/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Beatriz Teixeira, Gustavo Pereira, Luciano Freitas, Pedro di Toni",
+  "author": "Beatriz Teixeira, Gustavo Pereira, Luciano Freitas, Pedro de Toni",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "path": "^0.12.7",
     "sequelize": "^6.21.3",
