@@ -9,6 +9,7 @@ class ClienteController {
       return res.status(500).json(e.message);
     }
   }
+
   static async mostraUmCliente(req, res) {
     const { id } = req.params;
     try {
@@ -18,6 +19,16 @@ class ClienteController {
         },
       });
       return res.status(200).json(oneCliente);
+    } catch (e) {
+      return res.status(500).json(e.message);
+    }
+  }
+
+  static async criaCliente(req, res) {
+    const newCliente = req.body;
+    try {
+      const clienteCriado = await db.Cliente.create(newCliente);
+      return res.status(200).json(clienteCriado);
     } catch (e) {
       return res.status(500).json(e.message);
     }
