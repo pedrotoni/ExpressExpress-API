@@ -20,6 +20,17 @@ class CargaController {
             return res.status(500).json(e.message);
         }
     }
+
+    static async criaCarga(req,res) {
+        const newCarga = req.body;
+        try {
+            const cargaCriada = await db.Carga.create(newCarga);
+            return res.status(200).json(cargaCriada);
+        } catch (e) {
+            return res.status(500).json(e.message);
+        }
+    }
+
 }
 
 export default CargaController;
