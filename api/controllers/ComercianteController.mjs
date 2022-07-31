@@ -34,7 +34,6 @@ class ComercianteController {
         }
     }
 
-
 static async atualizaComerciante(req, res) {
     const { id } = req.params;
     const atualizacaoComerciante = req.body;
@@ -46,6 +45,17 @@ static async atualizaComerciante(req, res) {
       return res.status(500).json(e.message)
     }
   }
+  
+  static async deletaComerciante(req,res) {
+    const { id } = req.params;
+    try{
+      await db.Comerciante.destroy({where: {id: Number(id)}})
+      return res.status(200).json(`Registro ${id} deletado com sucesso!`);
+    } catch(e) {
+      return res.status(500).json(e.message)
+    }
+  }
 }
+
 
 export default ComercianteController;

@@ -11,5 +11,6 @@ routerComerciante.post("/comerciante", ComercianteController.criaComerciante);
 
 routerComerciante.put("/comerciante/:id", ComercianteController.atualizaComerciante);
 
+routerComerciante.delete("/comerciante/:id", ComercianteController.deletaComerciante);
 
 export default routerComerciante;
