@@ -23,7 +23,7 @@ class ComercianteController {
             return res.status(500).json(e.message);
         }
     }
-    
+
     static async criaComerciante(req, res) {
         const newComerciante = req.body;
         try {
@@ -33,6 +33,19 @@ class ComercianteController {
             return res.status(500).json(e.message);
         }
     }
+
+
+static async atualizaComerciante(req, res) {
+    const { id } = req.params;
+    const atualizacaoComerciante = req.body;
+    try{
+      await db.Comerciante.update(atualizacaoComerciante, {where: {id: Number(id)}});
+      const comercianteAtualizado = await db.Comerciante.findOne({where: {id: Number(id)}});
+      return res.status(200).json(comercianteAtualizado);
+    } catch (e) {
+      return res.status(500).json(e.message)
+    }
+  }
 }
 
 export default ComercianteController;

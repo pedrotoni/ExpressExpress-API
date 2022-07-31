@@ -9,5 +9,7 @@ routerComerciante.get("/comerciante/:id", ComercianteController.mostraUmComercia
 
 routerComerciante.post("/comerciante", ComercianteController.criaComerciante);
 
+routerComerciante.put("/comerciante/:id", ComercianteController.atualizaComerciante);
+
 
 export default routerComerciante;
