@@ -31,6 +31,17 @@ class CargaController {
         }
     }
 
+    static async atualizaCarga(req,res) {
+        const { id } = req.params;
+        const atualizacaoCarga = req.body;
+        try {
+            await db.Carga.update(atualizacaoCarga, {where: {id: Number(id)}});
+            const cargaAtualizada = await db.Carga.findOne ({where: {id: Number(id)}});
+            return res.status(200).json(cargaAtualizada);
+        } catch (e) {
+            return res.status(500).json(e.message)
+        }
+    }
 }
 
 export default CargaController;
