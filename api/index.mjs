@@ -10,7 +10,8 @@ const port = 3000;
 routes(app);
 
 app.listen(port, () =>
-  console.log(`Servidor rodando na porta de número ${port}`)
+  console.log(`\n-.-*-.-*-.-*-.-<<< MARCHA EXPRESS >>>-.-*-.-*-.-*-.-
+     Servidor rodando na porta de número ${port}.`)
 );
 
 export default app;
