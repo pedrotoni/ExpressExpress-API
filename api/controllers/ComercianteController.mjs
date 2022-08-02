@@ -14,12 +14,18 @@ class ComercianteController {
   static async mostraUmComerciante(req, res) {
     const { id } = req.params;
     try {
-      const umComerciante = await db.Comerciante.findOne({
-        where: {
-          id: Number(id),
-        },
+      const oneComerciante = await db.Comerciante.findOne({
+        where: { id: Number(id) },
       });
-      return res.status(200).json(umComerciante);
+      if (oneComerciante) {
+        return res.status(200).json(oneComerciante);
+      } else {
+        return res
+          .status(404)
+          .json(
+            `O registro ${id} ainda não foi criado ou foi deletado! Revise o ID inserido.`
+          );
+      }
     } catch (e) {
       return res.status(500).json(e.message);
     }
