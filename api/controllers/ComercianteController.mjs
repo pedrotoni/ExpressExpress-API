@@ -14,28 +14,28 @@ class ComercianteController {
   static async mostraUmComerciante(req, res) {
     const { id } = req.params;
     try {
-      const oneComerciante = await db.Comerciante.findOne({
+      const umComerciante = await db.Comerciante.findOne({
         where: {
           id: Number(id),
         },
       });
-      return res.status(200).json(oneComerciante);
+      return res.status(200).json(umComerciante);
     } catch (e) {
       return res.status(500).json(e.message);
     }
   }
   static async criaComerciante(req, res) {
-    const newComerciante = req.body;
+    const novoComerciante = req.body;
     const isValid = ComercianteValidacoes.isValid(
-      newComerciante["Razao_Social"],
-      newComerciante["CNPJ"],
-      newComerciante["Contato"],
-      newComerciante["E_Commerce"],
-      newComerciante["Estado"]
+      novoComerciante["Razao_Social"],
+      novoComerciante["CNPJ"],
+      novoComerciante["Contato"],
+      novoComerciante["E_Commerce"],
+      novoComerciante["Estado"]
     );
      try {
           if (isValid) {
-            const comercianteCriado = await db.Comerciante.create(newComerciante);
+            const comercianteCriado = await db.Comerciante.create(novoComerciante);
             return res.status(200).json(comercianteCriado);
           } else {
             throw new Error(
@@ -46,32 +46,64 @@ class ComercianteController {
           return res.status(500).json(e.message);
         }
       }
-
-  static async atualizaComerciante(req, res) {
-    const { id } = req.params;
-    const atualizacaoComerciante = req.body;
-    try {
-      await db.Comerciante.update(atualizacaoComerciante, {
-        where: { id: Number(id) },
-      });
-      const comercianteAtualizado = await db.Comerciante.findOne({
-        where: { id: Number(id) },
-      });
-      return res.status(200).json(comercianteAtualizado);
-    } catch (e) {
-      return res.status(500).json(e.message);
+      static async atualizaComerciante(req, res) {
+        const { id } = req.params;
+        const atualizacaoComerciante = req.body;
+        const isValid = ComercianteValidacoes.isValid(
+          atualizacaoComerciante["Nome"],
+          atualizacaoComerciante["CPF"],
+          atualizacaoComerciante["E_mail"],
+          atualizacaoComerciante["Estado"]
+        );
+    
+        try {
+          await db.Comerciante.update(atualizacaoComerciante, {
+            where: { id: Number(id) },
+          });
+          const comercianteAtualizado = await db.Comerciante.findOne({
+            where: { id: Number(id) },
+          });
+    
+          if (comercianteAtualizado) {
+            if (isValid) {
+              return res.status(200).json(comercianteAtualizado);
+            } else {
+              throw new Error(
+                "Há um erro nos dados que você está tentando atualizar! Tente novamente!"
+              );
+            }
+          } else {
+            return res
+              .status(404)
+              .json(
+                `Não foi possível atualizar o registro ${id} pois o mesmo ainda não foi criado ou foi deletado. Revise o ID inserido.`
+              );
+          }
+        } catch (e) {
+          return res.status(500).json(e.message);
+        }
+      }
+    
+      static async deletaComerciante(req, res) {
+        const { id } = req.params;
+        try {
+          const idDeletado = await db.Comerciante.destroy({
+            where: { id: Number(id) },
+          });
+    
+          if (idDeletado) {
+            return res.status(200).json(`Registro ${id} deletado com sucesso!`);
+          } else {
+            return res
+              .status(404)
+              .json(
+                `Não foi possível deletar o registro ${id} pois o mesmo não existe ou já foi deletado anteriormente. Revise o ID inserido.`
+              );
+          }
+        } catch (e) {
+          return res.status(500).json(e.message);
+        }
+      }
     }
-  }
-
-  static async deletaComerciante(req, res) {
-    const { id } = req.params;
-    try {
-      await db.Comerciante.destroy({ where: { id: Number(id) } });
-      return res.status(200).json(`Registro ${id} deletado com sucesso!`);
-    } catch (e) {
-      return res.status(500).json(e.message);
-    }
-  }
-}
 
 export default ComercianteController;
