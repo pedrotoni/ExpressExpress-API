@@ -24,6 +24,17 @@ class EnvioController {
             return res.status(500).json(e.message)
         }
     }
+
+    static async criaEnvio(req,res) {
+        const newEnvio = req.body;
+        
+        try{
+            const envioCriado = await db.Cliente.create(newEnvio);
+            return res.status(200).json(envioCriado)
+        } catch (e) {
+            return res.status(500).json(e.message)
+        }
+    }
 }
 
 export default EnvioController;
