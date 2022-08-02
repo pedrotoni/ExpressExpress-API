@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Comerciante.init({
-    CNPJ: DataTypes.STRING,
     Razao_Social: DataTypes.STRING,
+    CNPJ: DataTypes.STRING,
     E_Commerce: DataTypes.STRING,
     Contato: DataTypes.STRING,
     Estado: DataTypes.STRING
