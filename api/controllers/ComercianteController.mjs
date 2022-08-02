@@ -27,8 +27,8 @@ class ComercianteController {
     static async criaComerciante(req, res) {
         const newComerciante = req.body;
         try {
-            const comercianteCriado = await db.Comerciante.create(newComerciante);
-            return res.status(200).json(comercianteCriado);
+            const ComercianteCriado = await db.Comerciante.create(newComerciante);
+            return res.status(200).json(ComercianteCriado);
         } catch (e) {
             return res.status(500).json(e.message);
         }
