@@ -7,7 +7,7 @@ class ClienteController {
       const allClientes = await db.Cliente.findAll();
       return res.status(200).json(allClientes);
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -27,7 +27,7 @@ class ClienteController {
           );
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -69,7 +69,7 @@ class ClienteController {
 
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -125,7 +125,7 @@ class ClienteController {
           );
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -146,7 +146,7 @@ class ClienteController {
           );
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 }
