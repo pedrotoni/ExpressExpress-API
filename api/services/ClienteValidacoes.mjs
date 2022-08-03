@@ -7,11 +7,11 @@ class ClienteValidacoes{
     static validaNomeCliente(nome) {
         const regexNome = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,50}$/;
         return regexNome.test(nome)
-    } //Procurar regex que aceita acentos depois
+    } 
 
     /**
      * 
-     * @param {string} cpf //confirmar com Leo depois
+     * @param {string} cpf
      * @returns boolean
      */
 
@@ -38,33 +38,33 @@ class ClienteValidacoes{
 
     static validaEstadoCliente(estado) {
         const estadosBrasil = [
-            'ACRE','AC',
-            'ALAGOAS','AL',
-            'AMAPÁ','AMAPA','AP',
-            'AMAZONAS','AM',
-            'BAHIA','BA',
-            'CEARÁ','CE',
-            'DISTRITO FEDERAL','DF',
-            'ESPÍRITO SANTO','ESPIRITO SANTO','ES',
-            'GOIÁS','GOIAS','GO',
-            'MARANHÃO','MARANHAO','MA',
-            'MATO GROSSO','MT',
-            'MATO GROSSO DO SUL','MS',
-            'MINAS GERAIS','MG',
-            'PARÁ','PARA','PA',
-            'PARAÍBA','PARAIBA','PB',
-            'PARANÁ','PARANA','PR',
-            'PERNAMBUCO','PE',
-            'PIAUÍ','PIAUI','PI',
-            'RIO DE JANEIRO','RJ',
-            'RIO GRANDE DO NORTE','RN',
-            'RIO GRANDE DO SUL','RS',
-            'RORAIMA','RR',
-            'RONDÔNIA','RONDONIA','RO',
-            'SANTA CATARINA','SC',
-            'SÃO PAULO','SAO PAULO','SP',
-            'SERGIPE','SE',
-            'TOCANTINS','TO'
+            'ACRE',
+            'ALAGOAS',
+            'AMAPÁ','AMAPA',
+            'AMAZONAS',
+            'BAHIA',
+            'CEARÁ',
+            'DISTRITO FEDERAL',
+            'ESPÍRITO SANTO','ESPIRITO SANTO',
+            'GOIÁS','GOIAS',
+            'MARANHÃO','MARANHAO',
+            'MATO GROSSO',
+            'MATO GROSSO DO SUL',
+            'MINAS GERAIS',
+            'PARÁ','PARA',
+            'PARAÍBA','PARAIBA',
+            'PARANÁ','PARANA',
+            'PERNAMBUCO',
+            'PIAUÍ','PIAUI',
+            'RIO DE JANEIRO',
+            'RIO GRANDE DO NORTE',
+            'RIO GRANDE DO SUL',
+            'RORAIMA',
+            'RONDÔNIA','RONDONIA',
+            'SANTA CATARINA',
+            'SÃO PAULO','SAO PAULO',
+            'SERGIPE',
+            'TOCANTINS',
             ]
             if (estadosBrasil.includes(estado.toUpperCase()) === true) {
                 return true;
