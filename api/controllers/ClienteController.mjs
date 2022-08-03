@@ -40,14 +40,33 @@ class ClienteController {
       newCliente["Estado"]
     );
 
+    const nomeCorreto = ClienteValidacoes.validaNomeCliente(newCliente["Nome"]);
+    const cpfCorreto = ClienteValidacoes.validaCPFCliente(newCliente["CPF"]);
+    const emailCorreto = ClienteValidacoes.validaEmailCliente(newCliente["E_mail"]);
+    const estadoCorreto = ClienteValidacoes.validaEstadoCliente(newCliente["Estado"]);
+
     try {
       if (isValid) {
         const clienteCriado = await db.Cliente.create(newCliente);
         return res.status(200).json(clienteCriado);
       } else {
-        throw new Error(
-          "Há um erro nos dados que você está tentando inserir! Tente novamente!"
-        );
+
+        if (!nomeCorreto) {
+          throw new Error (`Nome digitado inválido, tente novamente.`)
+        }
+
+        if (!cpfCorreto) {
+          throw new Error (`CPF digitado inválido, tente novamente.`)
+        }
+
+        if (!emailCorreto) {
+          throw new Error (`E-mail digitado inválido, tente novamente.`)
+        }
+
+        if (!estadoCorreto) {
+          throw new Error (`Estado digitado inválido, tente novamente.`)
+        }
+
       }
     } catch (e) {
       return res.status(500).json(e.message);
@@ -63,6 +82,10 @@ class ClienteController {
       atualizacaoCliente["E_mail"],
       atualizacaoCliente["Estado"]
     );
+    const nomeCorreto = ClienteValidacoes.validaNomeCliente(atualizacaoCliente["Nome"]);
+    const cpfCorreto = ClienteValidacoes.validaCPFCliente(atualizacaoCliente["CPF"]);
+    const emailCorreto = ClienteValidacoes.validaEmailCliente(atualizacaoCliente["E_mail"]);
+    const estadoCorreto = ClienteValidacoes.validaEstadoCliente(atualizacaoCliente["Estado"]);
 
     try {
       await db.Cliente.update(atualizacaoCliente, {
@@ -76,9 +99,23 @@ class ClienteController {
         if (isValid) {
           return res.status(200).json(clienteAtualizado);
         } else {
-          throw new Error(
-            "Há um erro nos dados que você está tentando atualizar! Tente novamente!"
-          );
+          
+          if (!nomeCorreto) {
+            throw new Error (`Nome digitado inválido, tente novamente.`)
+          }
+  
+          if (!cpfCorreto) {
+            throw new Error (`CPF digitado inválido, tente novamente.`)
+          }
+  
+          if (!emailCorreto) {
+            throw new Error (`E-mail digitado inválido, tente novamente.`)
+          }
+  
+          if (!estadoCorreto) {
+            throw new Error (`Estado digitado inválido, tente novamente.`)
+          }   
+
         }
       } else {
         return res
