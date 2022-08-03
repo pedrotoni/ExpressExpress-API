@@ -1,6 +1,10 @@
-import db from "../models/index.mjs";
-
 class EnvioValidacoes {
+
+    /**
+     * 
+     * @param {string} meioTransporte 
+     * @returns boolean
+     */
   static validaMeioTransporte(meioTransporte) {
     const meiosTransporte = [
       "BICICLETA",
@@ -17,20 +21,15 @@ class EnvioValidacoes {
     }
   }
 
+
+  /**
+   * 
+   * @param {int} prazo 
+   * @returns boolean
+   */
   static validaPrazo(prazo) {
-    return prazo <= 24;
+    return prazo <= 48 && prazo >= 1;
   }
-
-  /*static async verificaEstadosIguais(idCliente, idComerciante) {
-    const cliente = await db.Cliente.findOne(idCliente);
-    const comerciante = await db.Comerciante.findOne(idComerciante);
-
-    if (!cliente || !comerciante) {
-      return false;
-    } else {
-      return cliente["Estado"] === comerciante["Estado"];
-    }
-  }*/
 
   static isValid(meioTransporte, prazo) {
     return (

@@ -35,15 +35,27 @@ class EnvioController {
       newEnvio["Meio_de_transporte"],
       newEnvio["Prazo"]
     );
+    const meio = EnvioValidacoes.validaMeioTransporte(
+      newEnvio["Meio_de_transporte"]
+    );
+    const prazo = EnvioValidacoes.validaPrazo(newEnvio["Prazo"]);
 
     try {
       if (isValid) {
         const envioCriado = await db.Envio.create(newEnvio);
         return res.status(200).json(envioCriado);
       } else {
-        throw new Error(
-          `Há um erro nos dados que você tentou inserir. Revise as informações novamente.`
-        );
+        if (!meio && prazo) {
+          throw new Error(`Não trabalhamos com esse meio de transporte!`);
+        } else if (!prazo && meio) {
+          throw new Error(
+            `Esse prazo é inválido! Trabalhamos apenas com prazos de 1h a 48h.`
+          );
+        } else {
+          throw new Error(
+            `Revise os dados que você está tentando inserir. Ambos são inválidos.`
+          );
+        }
       }
     } catch (e) {
       return res.status(500).json(e.message);
@@ -57,6 +69,11 @@ class EnvioController {
       atualizacaoEnvio["Meio_de_transporte"],
       atualizacaoEnvio["Prazo"]
     );
+    const meio = EnvioValidacoes.validaMeioTransporte(
+      atualizacaoEnvio["Meio_de_transporte"]
+    );
+    const prazo = EnvioValidacoes.validaPrazo(atualizacaoEnvio["Prazo"]);
+
     try {
       await db.Envio.update(atualizacaoEnvio, { where: { id: Number(id) } });
       const envioAtualizado = await db.Envio.findOne({
@@ -67,9 +84,19 @@ class EnvioController {
         if (isValid) {
           return res.status(200).json(envioAtualizado);
         } else {
-          throw new Error(
-            `Há um erro nos dados que você está tentando atualizar! Revise as informações e tente novamente!`
-          );
+          if (!meio && prazo) {
+            throw new Error(
+              `Não foi possível atualizar os dados pois não trabalhamos com esse meio de transporte!`
+            );
+          } else if (!prazo && meio) {
+            throw new Error(
+              `Não foi possível atualizar os dados pois trabalhamos apenas com prazos de 1h a 48h.`
+            );
+          } else {
+            throw new Error(
+              `Revise os dados que você está tentando atualizar. Ambos são inválidos.`
+            );
+          }
         }
       } else {
         return res
