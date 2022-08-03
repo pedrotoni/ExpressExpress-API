@@ -9,11 +9,7 @@ class ComercianteValidacoes{
         return regexRazao_Social.test(Razao_Social)
     } //Procurar regex que aceita acentos depois
 
-    /**
-     * 
-     * @param {string} cpf //confirmar com Leo depois
-     * @returns boolean
-     */
+  
 
     static validaCNPJComerciante(CNPJ) {
         const regexCNPJ = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
