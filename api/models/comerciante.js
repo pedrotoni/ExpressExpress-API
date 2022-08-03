@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Comerciante.init({
-    CNPJ: DataTypes.STRING,
     Razao_Social: DataTypes.STRING,
+    CNPJ: DataTypes.STRING,
     E_Commerce: DataTypes.STRING,
-    E_mail: DataTypes.STRING,
+    Contato: DataTypes.STRING,
     Estado: DataTypes.STRING
   }, {
     sequelize,
