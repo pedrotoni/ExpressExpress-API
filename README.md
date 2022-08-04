@@ -1,7 +1,8 @@
-<h1> Marcha Express - Transportadora - entregas sustentáveis</h1>
+<h1> Marcha Express<br> 
+Transportadora - entregas sustentáveis</h1>
 <br>
 
-<h3> Para atender a Transportadora Express-Express desenvolvemos uma API REST cutomizada para o gerenciamento de entregas sustentáveis pela transportadora, através da API Marcha Express.
+<h3> Para atender a Transportadora Express-Express desenvolvemos uma API REST customizada para o gerenciamento de entregas sustentáveis pela transportadora, através da API Marcha Express. <br>
 Marcha Express é o núcleo de entrega sustentável, considerando volumes em pesos e quantidades limitadas para entregas em veículos sustentáveis, como a bicicleta. 
 </h3>
 <br>
@@ -14,10 +15,10 @@ Marcha Express é o núcleo de entrega sustentável, considerando volumes em pes
 
 <h2>Sobre o projeto</h2>
 <p> Como projeto final do módulo4 do curso de Web FullStack, desenvolvemos uma API-REST no tema: Transportadora, a API possui como entidades disponíveis para acesso:</p>
-<li>Comerciante
-<li>Cliente
-<li>Carga
-<li>Envio
+<li>comerciante
+<li>cliente
+<li>carga
+<li>envio
 <p> 
 <br>
 
@@ -60,7 +61,7 @@ $ npm start
 
 	GET - Todos os clientes http://localhost:3000/cliente
 	GET - um cliente http://localhost:3000/cliente/:id
-	POST - um cliente (salvo) http://localhost:3000/cliente
+	POST - criar cliente http://localhost:3000/cliente
 	PUT - atualizar cliente http://localhost:3000/cliente/:id
 	DELETE -deletar cliente http://localhost:3000/cliente/:id
 	
@@ -97,21 +98,23 @@ Comerciante
 Envio
 
     "Meio_de_transporte": "string",
-    "Prazo": "string",
-    "ComercianteId": FK,
-    "ClienteId": FK,
-    "CargaId": FK
+    "Prazo": integer,
+    "ComercianteId": integer FK,
+    "ClienteId": integer FK,
+    "CargaId": integer FK
 ```
 </h2>
 <br>
 <p><b>Para a entidade <i>Cliente</i></b>:
-<li>o atributo CPF deve conter 11 caracteres, 
+<li>o atributo Nome pode conter de 3 a 50 caracteres,
+<li>o atributo CPF deve conter 11 caracteres numéricos, 
 <li>o atributo email deve conter caracter "@",
 <li>o atributo estado deve ser preenchido com o nome do estado por extenso;
 </p>
 <p><b>Para a entidade <i>Comerciante</i></b>:
-<li>o atributo CNPJ deve conter 14 caracteres,
-<li>o atributo e-commerce deve conter ".com",
+<li>o atributo razão social pode conter de 3 a 50 caracteres,
+<li>o atributo CNPJ deve conter 14 caracteres numéricos,
+<li>o atributo e-commerce pode conter de 3 a 50 caracteres,
 <li>o atributo estado deve ser preenchido com o nome do estado por extenso;
 </p>
 <p><b>Para a entidade <i>Carga</i></b>:
@@ -122,7 +125,7 @@ Envio
 <p><b>Para a entidade <i>Envio</i></b>:
 <li>o atributo meio de transporte é limitado à: bicicleta, bicicleta elétrica e moto elétrica,
 <li>para a entidade prazo a regra de negócio é de 1 a 48h, 
-<li>para as entidades que são foreing key é necessário informar o ID que deseja relacionar, e o ID das entidades, comerciante, cliente e carga precisam ser existentes no bando de dados.
+<li>para as entidades que são foreign key é necessário informar o ID que deseja relacionar, e o ID das entidades, comerciante, cliente e carga precisam ser existentes no banco de dados.
 </p>
 <br>
 	
