@@ -47,14 +47,16 @@ $ cd ExpressExpress-API
 # Instale as dependências
 $ npm install
 
+# Inicie o banco de dados
+$ npx sequelize-cli db:migrate
+
 # Inicie o projeto
 $ npm start
 
-# Inicie o banco de dados
-$ npx sequelize-cli db:migrate
 ```
 <br>	
 <h2>Exemplo de rotas:</h2>
+
 
 	GET - Todos os clientes http://localhost:3000/cliente
 	GET - um cliente http://localhost:3000/cliente/:id
@@ -63,51 +65,54 @@ $ npx sequelize-cli db:migrate
 	DELETE -deletar cliente http://localhost:3000/cliente/:id
 	
 	<--! Para as demais entidades é só alterar na rota, com a entidade desejada-->
+<br>
 
 <h2>Informações importantes:
 <p><i>json para as entidades:</i></p>
-<h2>
+</h2>
 
 ```
 Cliente 
 
-    Nome: "string",
-    CPF: "string",
-    E_mail: "string",
-    Estado: "string"
+    "Nome": "string",
+    "CPF": "string",
+    "E_mail": "string",
+    "Estado": "string"
 
 Comerciante
 
-    Razao_Social: "string",
-    CNPJ: "string",
-    E_Commerce: "string",
-    Contato: "string",
-    Estado: "string"
+    "Razao_Social": "string",
+    "CNPJ": "string",
+    "E_Commerce": "string",
+    "Contato": "string",
+    "Estado": "string"
 
  Carga
 
-   Peso_KG: "string",
-    Numero_de_volume: "string",
-    Fragil: boolean,
-    Seguro: boolean
+    "Peso_KG": "string",
+    "Numero_de_volume": "string",
+    "Fragil": boolean,
+    "Seguro": boolean
 
 Envio
 
-    Meio_de_transporte: "string",
-    Prazo: "string",
-    ComercianteId: "FK",
-    ClienteId: "FK"
-    CargaId: "FK"
+    "Meio_de_transporte": "string",
+    "Prazo": "string",
+    "ComercianteId": FK,
+    "ClienteId": FK,
+    "CargaId": FK
 ```
 </h2>
-
+<br>
 <p><b>Para a entidade <i>Cliente</i></b>:
 <li>o atributo CPF deve conter 11 caracteres, 
-<li>o atributo email deve conter caracter "@";
+<li>o atributo email deve conter caracter "@",
+<li>o atributo estado deve ser preenchido com o nome do estado por extenso;
 </p>
 <p><b>Para a entidade <i>Comerciante</i></b>:
 <li>o atributo CNPJ deve conter 14 caracteres,
-<li>o atributo e-commerce deve conter ".com";
+<li>o atributo e-commerce deve conter ".com",
+<li>o atributo estado deve ser preenchido com o nome do estado por extenso;
 </p>
 <p><b>Para a entidade <i>Carga</i></b>:
 <li>os atributos "Frágil"e "Seguro" são booleanos e os valores passados devem ser true ou false, 
@@ -115,14 +120,13 @@ Envio
 <li>a entidade Volume deve ser entre 1 e 5;
 </p>
 <p><b>Para a entidade <i>Envio</i></b>:
-<li>o atributo meio de transporte é limitado a - bicicleta, bicicleta eletrica e moto eletrica,
-<li>para a entidade prazo a regra de negócio é de 1 a 24h, 
-<li>para as entidades que são foreing key é necessário informar o ID que deseja relacionar, 
-<li>para as entidades cliente e comerciante, é necessário que sejam do mesmo estado.
+<li>o atributo meio de transporte é limitado à: bicicleta, bicicleta elétrica e moto elétrica,
+<li>para a entidade prazo a regra de negócio é de 1 a 48h, 
+<li>para as entidades que são foreing key é necessário informar o ID que deseja relacionar, e o ID das entidades, comerciante, cliente e carga precisam ser existentes no bando de dados.
 </p>
 <br>
 	
-<h2>Desenvolvedores</h2><br>
+<h2>Desenvolvedores</h2>
 
 <li><a href="https://github.com/biateisi">Beatriz Teixeira</i>
 <li><a href="https://github.com/gnlto">Gustavo Pereira</i>
