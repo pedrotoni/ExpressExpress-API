@@ -37,6 +37,7 @@ class EnvioValidacoes {
       this.validaPrazo(prazo)
     );
   }
+
 }
 
 export default EnvioValidacoes;
