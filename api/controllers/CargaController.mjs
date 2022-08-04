@@ -18,7 +18,7 @@ class CargaController {
             if (oneCarga){
                 return res.status(200).json(oneCarga);    
             } else {
-                return res.status(404).json (`Não foi possível encontrar a carga ID:${id}. Por favor revise od ID inserido.`);
+                return res.status(404).json (`Não foi possível encontrar a carga ID:${id}. Por favor revise o ID inserido.`);
             } 
         } catch (e){
             return res.status(400).json(e.message);
@@ -106,11 +106,11 @@ class CargaController {
                 if (!seguroCorreto) {
                     throw new Error (`O atributo seguro é um booleano. Digite true para carga frágil ou false se não for.`)
                 } 
-                  else{
-                      return res.status(404).json(`Não foi possível atualizar o registro ID:${id} pois o mesmo ainda não foi criado ou foi deletado. Verifique o ID informado.`);                              
-                  }                
-                }
-             }
+            }
+        } else {
+            return res.status(404).json(`Não foi possível atualizar o registro ID:${id} pois o mesmo ainda não foi criado ou foi deletado. Verifique o ID informado.`);                              
+            }                
+            
         } catch (e) {
             return res.status(400).json(e.message)
         }
