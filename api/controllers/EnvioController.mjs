@@ -7,7 +7,7 @@ class EnvioController {
       const allEnvios = await db.Envio.findAll();
       return res.status(200).json(allEnvios);
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -25,7 +25,7 @@ class EnvioController {
           );
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -58,7 +58,7 @@ class EnvioController {
         }
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -106,7 +106,7 @@ class EnvioController {
           );
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 
@@ -126,7 +126,7 @@ class EnvioController {
           );
       }
     } catch (e) {
-      return res.status(500).json(e.message);
+      return res.status(400).json(e.message);
     }
   }
 }
